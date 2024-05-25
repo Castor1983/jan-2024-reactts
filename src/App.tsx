@@ -1,16 +1,12 @@
-import React, {FC, useState} from 'react';
-import './App.css';
-import {IToggleModel, useToggle} from "./hooks/useToggle";
+import React from 'react';
 
-
-
-
-const click = useToggle();
-const App: FC  = (value) => {
-  return (
-      <div>
-        <button onClick={click}>toggle</button>
-      </div>
-  );
+const App = () => {
+    
+    return (
+        <div>
+            App
+        </div>
+    );
 };
+
 export default App;
