@@ -1,10 +1,11 @@
 import React from 'react';
+import {UsersComponent} from "./components/userComponents/UsersComponent";
 
 const App = () => {
-    
+
     return (
         <div>
-            App
+            <UsersComponent/>
         </div>
     );
 };

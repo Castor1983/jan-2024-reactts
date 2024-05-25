@@ -7,6 +7,10 @@ let axiosInstance = axios.create({
 
 let request = {
     users: {
-        getAllUsers
+        getAllUsers: ()=> {
+            return axiosInstance.get('/users')
+        }
     }
 }
+
+export { request}
