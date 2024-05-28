@@ -5,11 +5,9 @@ import {IUsersResponseModel} from "../models/responseModels/IUsersResponseModel"
 import {IUserModel} from "../models/userModels/IUserModel";
 import {ITodoModel} from "../models/ITodoModel/ITodoModel";
 import {ITodosOfUserIdResponseModel} from "../models/responseModels/ITodosOfUserIdResponseModel";
+import {IProps} from "../components/userComponents/NewUserFormComponent";
 
 
-interface IData {
-    data: ITodoModel[]
-}
 export const useRequestOfUsers = () => {
     const [response, setResponse] = useState<IUserModel[]>([])
     useEffect(() => {
@@ -22,5 +20,12 @@ export const useRequestOfTodosOfUser = (userId: number) => {
     useEffect(() => {
 request.todos.getTodosByUserId(userId).then(({data}:AxiosResponse<ITodosOfUserIdResponseModel>) => setResponse([...data.todos]))
     }, [userId]);
+    return response
+}
+export const useRequestNewUser = (formValues: IProps) => {
+    const [response, setResponse] = useState<IUserModel>({})
+    useEffect(() => {
+request.users.postNewUser(formValues).then((res:AxiosResponse<IUserModel>) => setResponse(res)
+    }, [formValues]);
     return response
 }
