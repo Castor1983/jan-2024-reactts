@@ -1,9 +1,15 @@
 import React, {FC} from 'react';
-
-const UserComponent: FC  = (user) => {
+import {IUserModel} from "../../models/userModels/IUserModel";
+interface IProps {
+    user: IUserModel,
+    chooseUser: (id: number) => void
+}
+const UserComponent:FC<IProps> = ({user, chooseUser}) => {
     return (
         <div>
-            UserComponent
+            {user.id}.{user.firstName}
+            <button onClick={()=>
+            chooseUser(user.id)}>show todos of {user.firstName}</button>
         </div>
     );
 };

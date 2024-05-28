@@ -7,10 +7,16 @@ let axiosInstance = axios.create({
 
 let request = {
     users: {
-        getAllUsers: ()=> {
+        getAllUsers: () => {
             return axiosInstance.get('/users')
+        },
+    },
+        todos: {
+            getTodosByUserId: (userId: number) => {
+                return axiosInstance.get('/todos/user/' + userId)
+            }
         }
-    }
+
 }
 
 export { request}
