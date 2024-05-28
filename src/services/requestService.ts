@@ -1,4 +1,6 @@
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
+import {IUsersResponseModel} from "../models/responseModels/IUsersResponseModel";
+import {ITodosOfUserIdResponseModel} from "../models/responseModels/ITodosOfUserIdResponseModel";
 
 let axiosInstance = axios.create({
     baseURL: 'https://dummyjson.com',
@@ -7,12 +9,12 @@ let axiosInstance = axios.create({
 
 let request = {
     users: {
-        getAllUsers: () => {
+        getAllUsers: ():Promise<AxiosResponse<IUsersResponseModel>> => {
             return axiosInstance.get('/users')
         },
     },
         todos: {
-            getTodosByUserId: (userId: number) => {
+            getTodosByUserId: (userId: number):Promise<AxiosResponse<ITodosOfUserIdResponseModel>> => {
                 return axiosInstance.get('/todos/user/' + userId)
             }
         }
