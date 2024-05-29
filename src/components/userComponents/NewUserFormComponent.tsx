@@ -1,12 +1,10 @@
-import React, {FC, useState} from 'react';
+import React, { useState} from 'react';
 import {useForm} from "react-hook-form";
-import {useRequestNewUser} from "../../hooks/useRequest";
 import {IUserModel} from "../../models/userModels/IUserModel";
 import {request} from "../../services/requestService";
 import {AxiosResponse} from "axios";
-import {IUsersResponseModel} from "../../models/responseModels/IUsersResponseModel";
 export interface IProps {
-    firstName: string
+    firstName: string,
     lastName: string,
     age: number,
     gender: string,

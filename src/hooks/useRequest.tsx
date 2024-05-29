@@ -22,7 +22,7 @@ request.todos.getTodosByUserId(userId).then(({data}:AxiosResponse<ITodosOfUserId
     }, [userId]);
     return response
 }
-export const useRequestNewUser = ({firstName, lastName, age, gender, email, phone, username, password}: IProps) => {
+export const useRequestNewUser = () => {
     const [user, setUser] = useState<IUserModel | null>(null)
    const save = (user: IProps) => {
 request.users.postNewUser(user).then(({data}:AxiosResponse<any>) => setUser(data))
