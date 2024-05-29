@@ -1,9 +1,11 @@
 import React from 'react';
+import {useRequestOfUsers} from "../customHooks/useRequestOfUsers";
 
 const UsersComponent = () => {
+    const users = useRequestOfUsers()
     return (
         <div>
-            UsersComponent
+            {users.map(user => <div>{user.name}</div>)}
         </div>
     );
 };
