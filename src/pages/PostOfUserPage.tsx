@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {Outlet, useParams} from "react-router-dom";
 import {PostsOfUserComponent} from "../components/PostsOfUserComponent";
 import {useRequestOfPostsByUserId} from "../customHooks/useRequestOfPostsByUserId";
 
@@ -9,6 +9,8 @@ const PostsOfUserPage = () => {
     return (
         <div>
             <PostsOfUserComponent posts={posts}/>
+            <hr/>
+            <Outlet/>
         </div>
     );
 };
