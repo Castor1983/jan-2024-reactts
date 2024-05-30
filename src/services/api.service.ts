@@ -25,7 +25,12 @@ let axiosInstance = axios.create(
         getAllPosts: (): Promise<AxiosResponse<IPostModel[]>> => {
            return  axiosInstance.get('posts')
 
-    }},
+    },
+        getCommentsByPostId: (postId: string): Promise<AxiosResponse<ICommentModel[]>> => {
+            return axiosInstance.get(`posts/${postId}/comments`)
+        }
+
+    },
     comments: {
         getAllComments: (): Promise<AxiosResponse<ICommentModel[]>> => {
           return   axiosInstance.get('comments')

@@ -8,12 +8,15 @@ import {PostsPage} from "../pages/PostsPage";
 import {CommentsPage} from "../pages/CommentsPage";
 import {UsersPage} from "../pages/UsersPage";
 import {PostsOfUserPage} from "../pages/PostOfUserPage";
+import {CommentsOfPostPage} from "../pages/CommentsOfPostPage";
 
 export const routerConfig = createBrowserRouter(
     [
         {path: '/', element: <MainLayout/>, children: [
                 {path: 'users', element: <UsersPage/>, children :[
-                        {path: ':id/posts', element: <PostsOfUserPage/>}
+                        {path: ':id/posts', element: <PostsOfUserPage/>, children: [
+                                {path: ':postId/comments', element: <CommentsOfPostPage/>}
+                            ]}
                     ]},
                 {index: true, element: <HomePage/>},
                 {path: 'posts', element: <PostsPage/>},
