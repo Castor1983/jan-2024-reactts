@@ -16,6 +16,9 @@ let axiosInstance = axios.create(
     users: {
         getAllUsers: (): Promise<AxiosResponse<IUserModel[]>> => {
            return  axiosInstance.get('users')
+        },
+        getPostsByUserId: (userId: string): Promise<AxiosResponse<IPostModel[]>> => {
+            return axiosInstance.get(`users/${userId}/posts`)
         }
     },
     posts: {

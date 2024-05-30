@@ -1,20 +1,23 @@
 import {createBrowserRouter} from "react-router-dom";
 import {MainLayout} from "../layout/MainLayout";
-import {UsersComponent} from "../components/UsersComponent";
 import {HomePage} from "../pages/HomePage";
-import {PostsComponent} from "../components/PostsComponent";
-import {CommentsComponent} from "../components/CommentsComponent";
 import {TodosComponent} from "../components/TodosComponent";
 import {PhotosComponent} from "../components/PhotosComponent";
 import {AlbumsComponent} from "../components/AlbumsComponent";
+import {PostsPage} from "../pages/PostsPage";
+import {CommentsPage} from "../pages/CommentsPage";
+import {UsersPage} from "../pages/UsersPage";
+import {PostsOfUserPage} from "../pages/PostOfUserPage";
 
 export const routerConfig = createBrowserRouter(
     [
         {path: '/', element: <MainLayout/>, children: [
-                {path: 'users', element: <UsersComponent/>},
+                {path: 'users', element: <UsersPage/>, children :[
+                        {path: ':id/posts', element: <PostsOfUserPage/>}
+                    ]},
                 {index: true, element: <HomePage/>},
-                {path: 'posts', element: <PostsComponent/>},
-                {path: 'comments', element: <CommentsComponent/>},
+                {path: 'posts', element: <PostsPage/>},
+                {path: 'comments', element: <CommentsPage/>},
                 {path: 'todos', element: <TodosComponent/>},
                 {path: 'albums', element: <AlbumsComponent/>},
                 {path: 'photos', element: <PhotosComponent/>}
