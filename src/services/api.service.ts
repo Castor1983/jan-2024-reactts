@@ -18,7 +18,7 @@ request.headers.set('Athorization', 'Bear ' + iTokenObtainPair.access )}
 })
 const userService={
     createNewUser: ()=>{
-        axiosInstance.post('/users', )
+        axiosInstance.post<AuthDataModel>('/users', user)
     }
 }
 const authService ={
@@ -59,4 +59,4 @@ const carService = {
 
     }
 }
-export {authService, carService}
+export {authService, carService, userService}

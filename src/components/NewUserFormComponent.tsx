@@ -1,10 +1,11 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
 import {AuthDataModel} from "../models/AuthDataModel";
+import {userService} from "../services/api.service";
 
 const NewUserFormComponent = () => {
-    const {register, handleSubmit    }=useForm<AuthDataModel>({defaultValues:{username: 'userSZ1', password: 'P@$$word1'}}
-    const addNewUser = userService.createNewUser()
+    const {register, handleSubmit    }=useForm<AuthDataModel>({defaultValues:{username: 'userSZ1', password: 'P@$$word1'}})
+    const addNewUser = userService.createNewUser(user:  )
     return (
         <div>
             <h3>New user form`</h3>
