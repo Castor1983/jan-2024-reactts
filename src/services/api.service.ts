@@ -16,6 +16,11 @@ request.headers.set('Athorization', 'Bear ' + iTokenObtainPair.access )}
 
     return request
 })
+const userService={
+    createNewUser: ()=>{
+        axiosInstance.post('/users', )
+    }
+}
 const authService ={
     authentication: async (authData: AuthDataModel): Promise<boolean> => {
 let response;
