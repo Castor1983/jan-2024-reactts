@@ -5,7 +5,7 @@ const HeaderComponent = () => {
     return (
         <div>
             <ul>
-                <li><NavLink to={'newAccount'}>login page</NavLink> </li>
+                <li><NavLink to={'newAccount'}>new account page</NavLink> </li>
                 <li><NavLink to={'/'}>login page</NavLink> </li>
                 <li><NavLink to={'cars'}>cars page</NavLink> </li>
             </ul>
