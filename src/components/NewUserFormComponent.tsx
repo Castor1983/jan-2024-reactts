@@ -6,7 +6,8 @@ import {userService} from "../services/api.service";
 const NewUserFormComponent = () => {
     const {register, handleSubmit    }=useForm<AuthDataModel>({defaultValues:{username: 'userSZ1', password: 'P@$$word1'}})
     const addNewUser =(user: AuthDataModel) => {
-       const NewUser = userService.createNewUser(user).then(user => console.log(user))
+       const NewUser = userService.createNewUser(user)
+        console.log(user)
     }
     return (
         <div>

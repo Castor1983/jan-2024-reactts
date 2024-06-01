@@ -9,7 +9,7 @@ export const routerConfig = createBrowserRouter(
     [
         {path: '/', element: <MainLayout/>, errorElement: <h1>Sergey NOOOOObasik</h1>,
         children:[
-            {path: '/', element: <AuthPage/>},
+            {index: true, element: <AuthPage/>},
             {path: 'newAccount', element: <NewUserPage/>},
             {path: 'cars', element: <CarsPage/>}
         ]}
