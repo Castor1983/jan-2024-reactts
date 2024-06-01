@@ -6,12 +6,12 @@ import {ICarWithAuthModel} from "../models/ICarWithAuthModel";
 const CarsPage = () => {
     const [cars, setCars] = useState<ICarWithAuthModel[]>([])
     useEffect(() => {
-        carService.getCars().then((value) => console.log(value.items))
+        carService.getCars().then((value) => setCars(value!.items))
     }, []);
     return (
         <div>
             {
-              //cars.map(car=> <CarsComponent key={car.id} car={car}/>)
+              cars.map(car=> <CarsComponent key={car.id}  {car}/>)
             }
         </div>
     );

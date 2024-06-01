@@ -1,7 +1,7 @@
-import axios, {AxiosError} from "axios";
-import {AuthDataModel} from "../models/AuthDataModel";
-import {ITokenObtainPair} from "../models/ITokenObtainPair";
 import {retriveLocalStorageData} from "./helpers/helpers";
+import axios, {AxiosError} from "axios";
+import {ITokenObtainPair} from "../models/ITokenObtainPair";
+import {AuthDataModel} from "../models/AuthDataModel";
 import {ICarPaginatedModel} from "../models/ICarPaginatedModel";
 
 const axiosInstance = axios.create({
@@ -19,18 +19,6 @@ axiosInstance.interceptors.request.use(request => {
     return request;
 })
 
-const userService={
-    createNewUser: async (user: AuthDataModel)=>{
-        try {
-let response =
-         await axiosInstance.post<AuthDataModel>('/users', user)
-console.log(response)
-        }catch (e){
-            console.log(e)
-        }
-
-    }
-}
 const authService = {
     authentication: async (authData: AuthDataModel): Promise<boolean> => {
         let response;
@@ -43,6 +31,8 @@ const authService = {
             console.log(e);
 
         }
+
+
         return !!(response?.data?.access && response?.data?.refresh);
     },
     refresh: async (refreshToken: string) => {
@@ -56,9 +46,8 @@ const authService = {
 
 const carService = {
     getCars: async () => {
-        const response = await axiosInstance.get<ICarPaginatedModel>('/cars');
-        return response.data;
-        /*try {
+
+        try {
             const response = await axiosInstance.get<ICarPaginatedModel>('/cars');
             return response.data;
 
@@ -72,9 +61,13 @@ const carService = {
 
             }
 
-        }*/
+        }
 
     }
 
 }
-export {authService, carService, userService}
+
+export {
+    authService,
+    carService
+}
