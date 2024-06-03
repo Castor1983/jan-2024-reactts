@@ -2,17 +2,43 @@ import React, {useEffect, useState} from 'react';
 import {carService} from "../services/api.service";
 import {CarsComponent} from "../components/CarsComponent";
 import {ICarWithAuthModel} from "../models/ICarWithAuthModel";
+import {ICarPaginatedModel} from "../models/ICarPaginatedModel";
+import {PaginationComponent} from "../components/PaginationComponent";
+import {useSearchParams} from "react-router-dom";
 
 const CarsPage = () => {
-    const [cars, setCars] = useState<ICarWithAuthModel[]>([])
+   const [query, setQuery] =useSearchParams({page: '1'})
+    const [carsPaginatedObject, setCarsPaginatedObject] = useState<ICarPaginatedModel>({
+        items: [],
+        prev: null,
+        next: null,
+        total_pages: 0,
+        total_items: 0
+    })
     useEffect(() => {
-        carService.getCars().then((value) => setCars(value!.items))
-    }, []);
+    carService.getCars(query.get('page') || '1').then((value) => {
+        if(value){
+            setCarsPaginatedObject(value)
+        }
+    }
+    )
+    }, [query]);
+    const changePage=(action: string) => {
+        switch (action) {
+            case 'prev':
+                setQuery({...carsPaginatedObject.prev})
+                break;
+            case 'next':
+                setQuery({...carsPaginatedObject.next})
+                break;
+
+}
+    }
     return (
         <div>
-            {
-              cars.map(car=> <CarsComponent key={car.id}  {car}/>)
-            }
+               <CarsComponent cars={carsPaginatedObject.items}/>
+            <PaginationComponent changePage={changePage} next={carsPaginatedObject.next} prev={carsPaginatedObject.prev}/>
+
         </div>
     );
 };

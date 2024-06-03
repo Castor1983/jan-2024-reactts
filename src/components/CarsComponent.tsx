@@ -1,10 +1,16 @@
 import React, {FC} from 'react';
 import {ICarWithAuthModel} from "../models/ICarWithAuthModel";
+import {CarComponent} from "./CarComponent";
 
-const CarsComponent: FC<ICarWithAuthModel>= (car) => {
+interface Iprops{
+    cars: ICarWithAuthModel[]
+}
+const CarsComponent: FC<Iprops>= ({cars}) => {
     return (
         <div>
-            {car.brand}
+            {
+                cars.map(car => <CarComponent key={car.id} car={car}/>)
+            }
         </div>
     );
 };
