@@ -11,7 +11,7 @@ const UserPostsComponent : FC <Iprops>= ({userWithPosts}) => {
             {userWithPosts.name}
             <ul>
                 {
-                    userWithPosts.posts.map(post => (<li key={post.id}> {post.title}</li>))
+                    userWithPosts.posts.map((post) => (<li key={post.id}> {post.title}</li>))
                 }
             </ul>
         </div>

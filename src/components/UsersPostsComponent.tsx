@@ -8,9 +8,10 @@ const UsersPostsComponent = () => {
     const [userWithPostsState, setUserWithPostsState] = useState<UserWithPostsType[]>([])
     const userWithPostsArray = useMemo ( ()=> {
         return allUsers.map(user => {
-            return {...user, posts: allPosts.filter(post => post.userid === user.id)}
+            return {...user, posts: allPosts.filter(post => post.userId === user.id)}
         })
     }, [allPosts, allUsers])
+    console.log(userWithPostsArray)
     useEffect(() => {
         setUserWithPostsState(userWithPostsArray)
     }, [userWithPostsArray]);
