@@ -5,9 +5,9 @@ const HeaderComponent = () => {
     return (
         <div>
             <ul>
-                <li><link to={'users'} ></link></li>
-                <li><link to={'posts'}> posts page</link> </li>
-                <li><link to={'userPosts'}> user with posts page</link></li>
+                <li><NavLink to={'users'}>users page</NavLink></li>
+                <li><NavLink to={'posts'}> posts page</NavLink> </li>
+                <li><NavLink to={'userPosts'}> user with posts page</NavLink></li>
             </ul>
         </div>
     );
