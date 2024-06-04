@@ -21,21 +21,12 @@ axiosInstance.interceptors.request.use(request => {
 
 const authService = {
     authentication: async (authData: AuthDataModel): Promise<boolean> => {
-        let response;
-        try {
-            response =
-                await axiosInstance.post<ITokenObtainPair>('/auth', authData);
+        const response = await axiosInstance.post<ITokenObtainPair>('/auth', authData);
             localStorage.setItem('tokenPair', JSON.stringify(response.data));
-
-        } catch (e) {
-            console.log(e);
-
-        }
-
-
         return !!(response?.data?.access && response?.data?.refresh);
     },
-    refresh: async (refreshToken: string) => {
+    refresh: async () => {
+        const refreshToken = retriveLocalStorageData<ITokenObtainPair>('tokenPair').refresh
         const response = await axiosInstance.post<ITokenObtainPair>('/auth/refresh', {refresh: refreshToken});
         localStorage.setItem('tokenPair', JSON.stringify(response.data));
 
@@ -45,30 +36,14 @@ const authService = {
 }
 
 const carService = {
-    getCars: async (page: string) => {
-
-        try {
+    getCars: async (page: string = '1') => {
             const response = await axiosInstance.get<ICarPaginatedModel>('/cars', { params:
             {
                 page: page
             }
         });
             return response.data;
-
-        } catch (e) {
-            const axiosError = e as AxiosError;
-            if (axiosError?.response?.status === 401) {
-                const refreshToken = retriveLocalStorageData<ITokenObtainPair>('tokenPair').refresh;
-                await authService.refresh(refreshToken);
-                await carService.getCars(page);
-
-
-            }
-
-        }
-
     }
-
 }
 
 export {
