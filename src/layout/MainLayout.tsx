@@ -8,17 +8,24 @@ import {request} from "../services/api.service";
 
 const MainLayout = () => {
     const [users, setUsers] = useState<IUserModel[]>([])
+    const [favoriteUser, setFavoriteUser] = useState<IUserModel | null>(null)
     const [posts, setPosts] = useState<IPostModel[]>([])
     useEffect(() => {
         request.postService.getAllPosts().then(value => setPosts(value.data));
         request.userService.getAllUsers().then(value => setUsers(value.data))
     }, []);
+
+    const lift = (obj: IUserModel) => {
+        setFavoriteUser(obj)
+    }
+
     return (
         <div>
             <MyContext.Provider value = {
                 {
                     userStore:{
-                    allUsers: users
+                    allUsers: users,
+                        favoriteUser: (obj: IUserModel) => lift(obj)
                     },
                     postStore:{
                     allPosts: posts
@@ -28,6 +35,10 @@ const MainLayout = () => {
             <HeaderComponent/>
             <Outlet/>
             </MyContext.Provider>
+
+            <hr/>
+            {favoriteUser && <div>{favoriteUser.username}</div>}
+            <hr/>
         </div>
     );
 };
