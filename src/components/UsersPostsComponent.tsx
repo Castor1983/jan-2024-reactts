@@ -1,17 +1,16 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import {useContextProvider} from "../context/ContextProvider";
 import {UserWithPostsType} from "../models/UserWithPostsType";
 import {UserPostsComponent} from "./UserPostsComponent";
+import {useStore} from "../context/store";
 
 const UsersPostsComponent = () => {
-    const {postStore: {allPosts}, userStore: {allUsers}} = useContextProvider();
+const {postStore:{allPosts}, userStore:{allUsers}} = useStore();
     const [userWithPostsState, setUserWithPostsState] = useState<UserWithPostsType[]>([])
     const userWithPostsArray = useMemo ( ()=> {
         return allUsers.map(user => {
             return {...user, posts: allPosts.filter(post => post.userId === user.id)}
         })
     }, [allPosts, allUsers])
-    console.log(userWithPostsArray)
     useEffect(() => {
         setUserWithPostsState(userWithPostsArray)
     }, [userWithPostsArray]);

@@ -1,43 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {HeaderComponent} from "../components/HeaderComponent";
 import {Outlet} from "react-router-dom";
-import {MyContext} from "../context/ContextProvider";
-import {IUserModel} from "../models/IUserModel";
-import {IPostModel} from "../models/IPostModel";
+import {useStore} from "../context/store";
 import {request} from "../services/api.service";
 
 const MainLayout = () => {
-    const [users, setUsers] = useState<IUserModel[]>([])
-    const [favoriteUser, setFavoriteUser] = useState<IUserModel | null>(null)
-    const [posts, setPosts] = useState<IPostModel[]>([])
+    const {postStore, userStore} = useStore();
     useEffect(() => {
-        request.postService.getAllPosts().then(value => setPosts(value.data));
-        request.userService.getAllUsers().then(value => setUsers(value.data))
+        request.postService.getAllPosts().then(value => postStore.loadPosts(value.data));
+        request.userService.getAllUsers().then(value => userStore.loadUsers(value.data))
     }, []);
 
-    const lift = (obj: IUserModel) => {
-        setFavoriteUser(obj)
-    }
 
     return (
         <div>
-            <MyContext.Provider value = {
-                {
-                    userStore:{
-                    allUsers: users,
-                        favoriteUser: (obj: IUserModel) => lift(obj)
-                    },
-                    postStore:{
-                    allPosts: posts
-                    }
-                }
-            }>
+
             <HeaderComponent/>
             <Outlet/>
-            </MyContext.Provider>
 
             <hr/>
-            {favoriteUser && <div>{favoriteUser.username}</div>}
+            {userStore.favoriteUser && <div>{userStore.favoriteUser.username}</div>}
             <hr/>
         </div>
     );
