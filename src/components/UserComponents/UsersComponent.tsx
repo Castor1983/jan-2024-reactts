@@ -1,6 +1,6 @@
 import React from 'react';
 import {UserComponent} from "./UserComponent";
-import {useStore} from "../context/store";
+import {useStore} from "../../context/store";
 
 const UsersComponent = () => {
 const {userStore:{allUsers}} = useStore();

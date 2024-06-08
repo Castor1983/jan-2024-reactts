@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {UserWithPostsType} from "../models/UserWithPostsType";
+import {UserWithPostsType} from "../../models/UserWithPostsType";
 
 interface Iprops {
     userWithPosts: UserWithPostsType

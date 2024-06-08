@@ -1,6 +1,6 @@
 import React from 'react';
 import {PostComponent} from "./PostComponent";
-import {useStore} from "../context/store";
+import {useStore} from "../../context/store";
 
 const PostsComponent = () => {
 const {postStore:{allPosts}} = useStore();

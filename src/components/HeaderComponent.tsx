@@ -7,6 +7,8 @@ const HeaderComponent = () => {
             <ul>
                 <li><NavLink to={'users'}>users page</NavLink></li>
                 <li><NavLink to={'posts'}> posts page</NavLink> </li>
+                <li><NavLink to={'photos'}> photos page</NavLink> </li>
+                <li><NavLink to={'albums'}> albums page</NavLink> </li>
                 <li><NavLink to={'userPosts'}> user with posts page</NavLink></li>
             </ul>
         </div>

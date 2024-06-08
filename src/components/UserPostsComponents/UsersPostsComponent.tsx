@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import {UserWithPostsType} from "../models/UserWithPostsType";
+import {UserWithPostsType} from "../../models/UserWithPostsType";
 import {UserPostsComponent} from "./UserPostsComponent";
-import {useStore} from "../context/store";
+import {useStore} from "../../context/store";
 
 const UsersPostsComponent = () => {
 const {postStore:{allPosts}, userStore:{allUsers}} = useStore();

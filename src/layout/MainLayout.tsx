@@ -5,10 +5,12 @@ import {useStore} from "../context/store";
 import {request} from "../services/api.service";
 
 const MainLayout = () => {
-    const {postStore, userStore} = useStore();
+    const {postStore, userStore, photoStore, albumStore, todoStore, commentStore} = useStore();
     useEffect(() => {
         request.postService.getAllPosts().then(value => postStore.loadPosts(value.data));
-        request.userService.getAllUsers().then(value => userStore.loadUsers(value.data))
+        request.userService.getAllUsers().then(value => userStore.loadUsers(value.data));
+        request.photoService.getAllPhotos().then(value => photoStore.loadPhotos(value.data));
+        request.albumService.getAllAlbums().then(value => albumStore.loadAlbums(value.data))
     }, []);
 
 
